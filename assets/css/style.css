@@ -1,3 +1,4 @@
-body{font-family:Arial;background:#111827;color:#f3f4f6;padding:30px}
-.card{background:#1f2937;padding:20px;border-radius:10px;margin:18px 0}
+body{font-family:Arial,sans-serif;background:#0f172a;color:#e5e7eb;padding:30px;line-height:1.7}
+.card{background:#1e293b;padding:20px;border-radius:10px;margin:20px 0}
 h1,h2{color:#60a5fa}
+ul{padding-left:20px}
