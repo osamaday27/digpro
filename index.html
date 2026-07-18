@@ -1,23 +1,172 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Products Master Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
+<body>
 
-<body><button id="toggle">🌙</button>
-    <aside class="sidebar">
-        <h2>Guide</h2><a>Home</a><a>SaaS</a><a>Marketing</a>
-    </aside>
-    <main>
-        <section class="hero">
-            <h1>Build & Sell Digital Products</h1>
-            <p>From idea to customers.</p>
-        </section>
-    </main>
-    <script src="assets/js/script.js"></script>
+<aside class="sidebar">
+  <div class="brand">DP<span>.</span>Guide</div>
+  <div class="nav-label">عام</div>
+  <button class="nav-item active" data-page="dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</button>
+  <div class="nav-label">المحتوى</div>
+  <button class="nav-item" data-page="products"><i class="bi bi-boxes"></i> أنواع المنتجات <span class="count" id="cnt-products">10</span></button>
+  <button class="nav-item" data-page="business"><i class="bi bi-diagram-3"></i> المسار التجاري</button>
+  <button class="nav-item" data-page="roadmap"><i class="bi bi-map"></i> Roadmap 90 يوم</button>
+  <button class="nav-item" data-page="checklist"><i class="bi bi-check2-square"></i> Checklist <span class="count" id="cnt-checklist">0/9</span></button>
+  <button class="nav-item" data-page="resources"><i class="bi bi-toolbox"></i> أدوات ومراجع</button>
+  <div class="nav-label">أنت</div>
+  <button class="nav-item" data-page="notes"><i class="bi bi-sticky"></i> ملاحظاتي <span class="count" id="cnt-notes">0</span></button>
+  <button class="nav-item" data-page="bookmarks"><i class="bi bi-bookmark"></i> المحفوظات <span class="count" id="cnt-bookmarks">0</span></button>
+  <button class="nav-item" data-page="downloads"><i class="bi bi-download"></i> تحميلات</button>
+  <div class="sidebar-progress">
+    <span>التقدم العام</span>
+    <div class="bar-track"><div class="bar-fill" id="sidebarBar" style="width:0%"></div></div>
+  </div>
+</aside>
+
+<button class="mobile-menu-btn" id="mobileMenuBtn"><i class="bi bi-list"></i></button>
+
+<div class="shell">
+  <div class="topbar">
+    <div class="search-wrap">
+      <i class="bi bi-search"></i>
+      <input type="text" id="searchInput" placeholder="دور في المنتجات، الأدوات، الـ checklist...">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <div class="topbar-actions">
+      <div class="progress-chip"><i class="bi bi-lightning-charge"></i> <span id="topProgress">0%</span> مكتمل</div>
+      <button class="icon-btn" id="darkToggle"><i class="bi bi-moon-stars"></i></button>
+    </div>
+  </div>
+
+  <main class="main">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-head">
+        <div><span class="spec-tag">Dashboard</span><h2>أهلاً بيك تاني. كمّل من هنا.</h2></div>
+        <p>نظرة سريعة على تقدمك، آخر حاجة كنت شغال عليها، والمحفوظات بتاعتك.</p>
+      </div>
+
+      <div class="dash-grid">
+        <div class="ring-card">
+          <div class="ring" id="ringEl" style="--pct:0"><div class="ring-inner" id="ringText">0%</div></div>
+          <h4>نسبة الإنجاز</h4>
+          <p>محسوبة من Checklist + مراحل الـ Roadmap</p>
+        </div>
+        <div class="stat-mini-grid">
+          <div class="stat-mini"><i class="bi bi-check2-square"></i><div class="val" id="statChecklist">0/9</div><div class="lbl">عناصر Checklist مكتملة</div></div>
+          <div class="stat-mini"><i class="bi bi-map"></i><div class="val" id="statRoadmap">0/3</div><div class="lbl">مراحل Roadmap مكتملة</div></div>
+          <div class="stat-mini"><i class="bi bi-bookmark-star"></i><div class="val" id="statBookmarks">0</div><div class="lbl">عناصر محفوظة</div></div>
+          <div class="stat-mini"><i class="bi bi-sticky"></i><div class="val" id="statNotes">0</div><div class="lbl">ملاحظات مكتوبة</div></div>
+        </div>
+      </div>
+
+      <div class="continue-list">
+        <h4><i class="bi bi-play-circle"></i> كمّل من هنا</h4>
+        <div class="continue-row"><i class="bi bi-boxes"></i><div class="txt">استعرض العشر أنواع للمنتجات الرقمية<small>وحدة 01 · أنواع المنتجات</small></div><a href="#" data-goto="products">افتح ←</a></div>
+        <div class="continue-row"><i class="bi bi-check2-square"></i><div class="txt">اشطب أول 3 عناصر في الـ Checklist<small>وحدة 03 · Checklist</small></div><a href="#" data-goto="checklist">افتح ←</a></div>
+        <div class="continue-row"><i class="bi bi-sticky"></i><div class="txt">دوّن أول ملاحظة عن فكرة منتجك<small>ملاحظاتي</small></div><a href="#" data-goto="notes">افتح ←</a></div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <section class="page" id="page-products">
+      <div class="page-head">
+        <div><span class="spec-tag">وحدة 01</span><h2>عشرة أشكال لمنتج رقمي.</h2></div>
+        <p>اضغط على النجمة عشان تحفظ أي نوع في المحفوظات بتاعتك.</p>
+      </div>
+      <div class="card-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- ===== BUSINESS ===== -->
+    <section class="page" id="page-business">
+      <div class="page-head">
+        <div><span class="spec-tag">وحدة 02</span><h2>من التسعير لأول عميل.</h2></div>
+        <p>أربع خطوات بترتيب فعلي، مش عشوائي.</p>
+      </div>
+      <div class="track">
+        <div class="track-step"><span class="num">01</span><i class="bi bi-tags"></i><h3>استراتيجيات التسعير</h3><p>تحدد سعر بيغطي مجهودك والعميل حاسس إنه استثمار مش مصروف.</p></div>
+        <div class="track-step"><span class="num">02</span><i class="bi bi-rocket-takeoff"></i><h3>النشر على الإنترنت</h3><p>تختار المنصة والقناة المناسبة، وتجهز صفحة هبوط مقنعة.</p></div>
+        <div class="track-step"><span class="num">03</span><i class="bi bi-megaphone"></i><h3>التسويق</h3><p>حضور مستمر مش بوست وخلاص، عشان الناس تعرف منتجك.</p></div>
+        <div class="track-step"><span class="num">04</span><i class="bi bi-handshake"></i><h3>الحصول على أول عميل</h3><p>أصعب خطوة وأهمها — بتتعلم منها أكتر من أي كورس.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== ROADMAP ===== -->
+    <section class="page" id="page-roadmap">
+      <div class="page-head">
+        <div><span class="spec-tag">وحدة 03</span><h2>خطة تنفيذ 90 يوم.</h2></div>
+        <p>سجّل كل مرحلة "خلصتها" أول ما تخلصها، عشان يتحسب في نسبة تقدمك.</p>
+      </div>
+      <div class="roadmap" id="roadmapList"></div>
+    </section>
+
+    <!-- ===== CHECKLIST ===== -->
+    <section class="page" id="page-checklist">
+      <div class="page-head">
+        <div><span class="spec-tag">تنفيذ</span><h2>Checklist للتنفيذ.</h2></div>
+        <p id="checklistSummary">0 من 9 مكتملة</p>
+      </div>
+      <div id="checklistWrap"></div>
+    </section>
+
+    <!-- ===== RESOURCES ===== -->
+    <section class="page" id="page-resources">
+      <div class="page-head">
+        <div><span class="spec-tag">مراجع</span><h2>أدوات ومراجع.</h2></div>
+        <p>أدوات تساعدك تنفذ من غير ما تضيع وقت في البحث والتجربة.</p>
+      </div>
+      <div class="card-grid" id="resourcesGrid"></div>
+    </section>
+
+    <!-- ===== NOTES ===== -->
+    <section class="page" id="page-notes">
+      <div class="page-head">
+        <div><span class="spec-tag">ملاحظاتي</span><h2>دوّن أفكارك أول بأول.</h2></div>
+        <p>بتتحفظ في المتصفح بتاعك، محدش شايفها غيرك.</p>
+      </div>
+      <div class="note-editor">
+        <textarea id="noteInput" placeholder="اكتب ملاحظة... مثلاً: فكرة منتج، سعر مبدئي، اسم دومين..."></textarea>
+        <button class="btn btn-amber" id="saveNoteBtn"><i class="bi bi-plus-lg"></i> حفظ الملاحظة</button>
+      </div>
+      <div id="notesList"></div>
+    </section>
+
+    <!-- ===== BOOKMARKS ===== -->
+    <section class="page" id="page-bookmarks">
+      <div class="page-head">
+        <div><span class="spec-tag">محفوظات</span><h2>كل حاجة حفظتها.</h2></div>
+        <p>منتجات وأدوات حفظتها من صفحات الدليل.</p>
+      </div>
+      <div id="bookmarksList" class="card-grid"></div>
+    </section>
+
+    <!-- ===== DOWNLOADS ===== -->
+    <section class="page" id="page-downloads">
+      <div class="page-head">
+        <div><span class="spec-tag">تحميلات</span><h2>ملفات جاهزة تاخدها معاك.</h2></div>
+        <p>ملفات نصية بتتولد فورًا من محتوى الدليل.</p>
+      </div>
+      <div class="dl-grid">
+        <div class="dl-card"><i class="bi bi-map"></i><h4>خطة الـ 90 يوم</h4><p>الثلاث مراحل بتفاصيلها كاملة.</p><button class="dl-btn" data-dl="roadmap"><i class="bi bi-download"></i> تحميل .txt</button></div>
+        <div class="dl-card"><i class="bi bi-check2-square"></i><h4>Checklist قابلة للطباعة</h4><p>كل عناصر التنفيذ في ملف واحد.</p><button class="dl-btn" data-dl="checklist"><i class="bi bi-download"></i> تحميل .txt</button></div>
+        <div class="dl-card"><i class="bi bi-toolbox"></i><h4>قائمة الأدوات والمراجع</h4><p>كل الأدوات المذكورة في الدليل.</p><button class="dl-btn" data-dl="resources"><i class="bi bi-download"></i> تحميل .txt</button></div>
+        <div class="dl-card"><i class="bi bi-file-earmark-text"></i><h4>ملخص الدليل الكامل</h4><p>كل الوحدات في ملف واحد شامل.</p><button class="dl-btn" data-dl="full"><i class="bi bi-download"></i> تحميل .txt</button></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/app.js"></script>
 </body>
-
 </html>
